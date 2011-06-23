@@ -16,6 +16,6 @@
 }
 @property (nonatomic, retain) NSMutableArray *_allEntries;
 @property (nonatomic, retain) NSOperationQueue *queue;
-@property (nonatomic, retain) NSArray *feed;
+@property (nonatomic, retain) NSArray *feeds;
 
 @end

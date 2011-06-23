@@ -1350,8 +1350,8 @@
 		<string>PrimaryDocumentVisibleCharacterRange</string>
 		<string>HideAllIssues</string>
 		<string>PrimaryDocumentSelectedCharacterRange</string>
-		<real>330551687.97705299</real>
-		<string>{0, 473}</string>
+		<real>330552898.34267402</real>
+		<string>{0, 474}</string>
 		<string>{466, 0}</string>
 		<dict>
 			<key>$class</key>
@@ -1541,9 +1541,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>330551692.99591601</real>
-		<string>{946, 1427}</string>
-		<string>{1019, 0}</string>
+		<real>330556443.00037003</real>
+		<string>{39, 1891}</string>
+		<string>{572, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -1937,7 +1937,7 @@
 				<integer>177</integer>
 			</dict>
 			<key>NS.time</key>
-			<real>330551106.48054898</real>
+			<real>330554929.45415503</real>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -1948,7 +1948,7 @@
 			<key>$classname</key>
 			<string>NSDate</string>
 		</dict>
-		<string>Today at 3:45 PM</string>
+		<string>Today at 4:48 PM</string>
 		<integer>106</integer>
 		<dict>
 			<key>$class</key>
@@ -4333,10 +4333,10 @@
 				</dict>
 			</array>
 		</dict>
-		<real>330551692.99969101</real>
-		<string>{946, 1427}</string>
-		<string>{1019, 0}</string>
-		<string>@implementation RootViewController</string>
+		<real>330556443.00482202</real>
+		<string>{39, 1891}</string>
+		<string>{572, 0}</string>
+		<string>-refresh</string>
 		<dict>
 			<key>$class</key>
 			<dict>

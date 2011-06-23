@@ -8,10 +8,40 @@
 
 #import "RootViewController.h"
 #import "RSSEntry.h"
+#import "ASIHTTPRequest.h"
 
 @implementation RootViewController
 @synthesize _allEntries;
+@synthesize feeds;
+@synthesize queue;
 
+- (void)refresh {
+    for (NSString *feed in feeds)
+    {
+        NSURL *url = [NSURL URLWithString:feed];
+        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+        [request setDelegate:self];
+        [queue addOperation:request];
+    }
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request {
+    
+    RSSEntry *entry = [[[RSSEntry alloc] initWithBlogTitle:request.url.absoluteString
+                                              articleTitle:request.url.absoluteString
+                                                articleUrl:request.url.absoluteString
+                                               articleDate:[NSDate date]] autorelease];    
+    int insertIdx = 0;                    
+    [_allEntries insertObject:entry atIndex:insertIdx];
+    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:insertIdx inSection:0]]
+                          withRowAnimation:UITableViewRowAnimationRight];
+    
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request {
+    NSError *error = [request error];
+    NSLog(@"Error: %@", error);
+}
 - (id)init
 {
     if (self = [super init]) {
@@ -35,6 +65,8 @@
 {
     [_allEntries release];
     _allEntries = nil;
+    [feeds release];
+    feeds = nil;
     [super dealloc];
 }
 
@@ -83,7 +115,25 @@
 {
     self.title = @"Feeds";
     self._allEntries = [NSMutableArray array];
-    [self addRows];
+    self.queue = [[[NSOperationQueue alloc] init] autorelease];
+    self.feeds = [NSArray arrayWithObjects:@"http://feeds.feedburner.com/RayWenderlich",
+                  @"http://feeds.feedburner.com/vmwstudios",
+                  @"http://idtypealittlefaster.blogspot.com/feeds/posts/default", 
+                  @"http://www.71squared.com/feed/",
+                  @"http://cocoawithlove.com/feeds/posts/default",
+                  @"http://feeds2.feedburner.com/brandontreb",
+                  @"http://feeds.feedburner.com/CoryWilesBlog",
+                  @"http://geekanddad.wordpress.com/feed/",
+                  @"http://iphonedevelopment.blogspot.com/feeds/posts/default",
+                  @"http://karnakgames.com/wp/feed/",
+                  @"http://kwigbo.com/rss",
+                  @"http://shawnsbits.com/feed/",
+                  @"http://pocketcyclone.com/feed/",
+                  @"http://www.alexcurylo.com/blog/feed/",         
+                  @"http://feeds.feedburner.com/maniacdev",
+                  @"http://feeds.feedburner.com/macindie",
+                  nil];    
+    [self refresh];
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
